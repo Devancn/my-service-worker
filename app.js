@@ -1,14 +1,14 @@
 // service worker 注册
-
-if (serviceWorker in navigator) {
+if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("/sw-test/sw.js", { scope: "/sw-test" })
-    .then((reg) => {
-      if (reg.installing) {
+    .register("/sw.js", { scope: "./" })
+    .then((registration) => {
+      console.log(registration, "registration");
+      if (registration.installing) {
         console.log("Service worker 安装中");
-      } else if (reg.waiting) {
+      } else if (registration.waiting) {
         console.log("Service worker 安装完成");
-      } else if (reg.active) {
+      } else if (registration.active) {
         console.log("Service worker 激活状态");
       }
     })
@@ -35,7 +35,7 @@ function imgLoad(imgJSON) {
 }
 
 window.onload = function () {
-  const imgSection = document.querySelector("select");
+  const imgSection = document.querySelector("section");
 
   const gallery = {
     images: [
@@ -69,6 +69,7 @@ window.onload = function () {
   for (let i = 0; i <= gallery.images.length - 1; ++i) {
     imgLoad(gallery.images[i])
       .then(([file, imageData]) => {
+        console.log(imageData, 'imageData');
         const imageEl = document.createElement("img");
         const figureEl = document.createElement("figure");
         const captionEl = document.createElement("caption");
@@ -79,10 +80,10 @@ window.onload = function () {
         imageEl.setAttribute("alt", imageData.alt);
         captionEl.innerHTML = `<strong>${imageData.name}</strong>: Taken by ${imageData.credit}`;
 
-        imgSection.appendChild(figureEl);
         figureEl.appendChild(imageEl);
         figureEl.appendChild(captionEl);
+        imgSection.appendChild(figureEl);
       })
-      .then((err) => console.log(err));
+      .catch((err) => console.log(err));
   }
 };

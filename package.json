@@ -1,0 +1,23 @@
+{
+  "name": "service-worker-test",
+  "version": "1.0.0",
+  "description": "mdn service worker demo https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers",
+  "main": "app.js",
+  "scripts": {
+    "start": "serve ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devancn/my-service-worker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Devancn/my-service-worker/issues"
+  },
+  "homepage": "https://github.com/Devancn/my-service-worker#readme",
+  "dependencies": {
+    "serve": "^11.3.2"
+  }
+}
